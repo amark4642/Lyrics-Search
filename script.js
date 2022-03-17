@@ -34,12 +34,10 @@ function write(data) {
         const b = data[i].title;
         // console.log(data[i].artist.name,data[i].title);
         // temp = temp + `<li>${data[i].title}-${data[i].artist.name}-<button onclick="getLyrics(${data[i].artist.name},${data[i].title})" class="myButton" id="${i}">Get Lyrics</button></li>`
-        temp = temp + `<li><span class="a">${data[i].title}-${data[i].artist.name}</span><span class="b"><button onclick="getLyrics('${a}','${b}')" class="myButton" id="${i}">Get Lyrics</button></span></li>`
+        temp = temp + `<div id="x"><div class="a">${data[i].title}-${data[i].artist.name}</div><div class="b"><button onclick="getLyrics('${a}','${b}')" class="myButton">Get Lyrics</button></div></div></li>`        
     }
     resultList = temp;
-    document.getElementById("result").innerHTML = `${temp}<br><button class="backbtn" onclick="goBack()">Back</button>`;
-
-    // document.getElementById("").addEventListener("click", getLyrics);
+    document.getElementById("result").innerHTML = `<p class="temp">Search results for<strong> " ${searchBox} " :-</strong><hr><br></p>${temp}<button class="backbtn" onclick="goBack()">Back</button>`;
 
 }
 
@@ -64,7 +62,7 @@ async function getLyrics(artist,title) {
         const data = await res.json();
         const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
         document.getElementById("result").innerHTML =
-            `<span><div>Lyrics of - "<strong>${searchBox}</strong>"</div><br>${lyrics}</span><br><button class="backbtn" onclick="goBacktoResult()">Back</button>`;
+            `<span><div><p class="temp">Lyrics of - <strong>" ${searchBox} "</strong></p></div><br>${lyrics}</span><br><button class="backbtn" onclick="goBacktoResult()">Back</button>`;
     }
 }
 
